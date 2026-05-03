@@ -1,1 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}YouSim{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: linear-gradient(135deg, #0f0f23, #1a1a2e); min-height: 100vh; }
+    </style>
+</head>
+<body class="text-white">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="fixed top-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-xl bg-{{ 'green' if category=='success' else 'red' }}-600">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
 
+    {% block content %}{% endblock %}
+</body>
+</html>
